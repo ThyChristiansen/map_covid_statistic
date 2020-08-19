@@ -1,15 +1,22 @@
 .pin {
-  width: 30px;
-  height: 30px;
-  border-radius: 50% 50% 50% 0;
-  background: #00cae9;
-  position: absolute;
-  transform: rotate(-45deg);
-  left: 50%;
-  top: 50%;
-  margin: -20px 0 0 -20px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 3.6em;
+  height: 3.6em;
+  font-size: .7em;
+  font-weight: bold;
+  /* background-color: red-800; */
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(black, .9);
+
+ 
+
+
 }
-.pin:after {
+/* .pin:after {
   content: "";
   width: 14px;
   height: 14px;
@@ -17,13 +24,13 @@
   background: #e6e6e6;
   position: absolute;
   border-radius: 50%;
-}
+} */
 
-.bounce {
+/* .bounce {
   animation-name: bounce;
   animation-fill-mode: both;
   animation-duration: 1s;
-}
+} */
 
 .pulse {
   background: #d6d4d4;

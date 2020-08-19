@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker/Marker';
 import { connect } from 'react-redux';
-
-
+import { Data } from './actions/DataCovid';
 
 const Map = (props: any) => {
   const getMapOptions = (maps: any) => {
@@ -23,7 +22,7 @@ const Map = (props: any) => {
           elementType: 'labels.text.fill',
           stylers: [{ color: '#000' }],
         },
-        
+
         {
           featureType: 'road',
           elementType: 'geometry',
@@ -54,7 +53,7 @@ const Map = (props: any) => {
           elementType: 'labels.text.fill',
           stylers: [{ color: '#f3d19c' }],
         },
-        
+
         {
           featureType: 'water',
           elementType: 'geometry',
@@ -75,7 +74,8 @@ const Map = (props: any) => {
   };
   const [center, setCenter] = useState({ lat: 1, lng: 1 });
   const [zoom, setZoom] = useState(1);
-  
+
+  // console.log(props.listData)
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
@@ -83,23 +83,20 @@ const Map = (props: any) => {
         defaultCenter={center}
         defaultZoom={zoom}
         options={getMapOptions}
-        
       >
-         {/* <div>{props.listData}</div> */}
-        {/* {JSON.stringify()} */}
-        {props.listData.map((country:string, lat:number, lng:number) => {
+        {/* <div>{props.listData}</div> */}
+        {/* {JSON.stringify(props.listData[1])} */}
+        {props.listData.map((data: Data) => {
           return (
-            <Marker
-              key={country}
-              // lat={lat}
-              // lng={lng}
-            />
+              <Marker lat={data.countryInfo.lat} lng={data.countryInfo.long} name={data.cases} color="red" />
           );
         })}
+       
+
       </GoogleMapReact>
     </div>
   );
 };
-const putReduxStateOnState = (reduxState:any) => ({ reduxState });
+const putReduxStateOnState = (reduxState: any) => ({ reduxState });
 
 export default connect(putReduxStateOnState)(Map);

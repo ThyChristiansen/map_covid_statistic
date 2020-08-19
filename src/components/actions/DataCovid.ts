@@ -10,8 +10,9 @@ export interface Data {
   recovered: number;
   countryInfo: {
     lat: number;
-    lng: number;
+    long: number;
   };
+  // countryInfo:any;
 }
 
 export interface FetchDataAction {

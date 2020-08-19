@@ -14,18 +14,28 @@ class _App extends React.Component<AppProps> {
     this.props.fetchDatas();
   }
 
-  renderList():JSX.Element[]{
-    return this.props.datas.map((data:Data)=>{
-      return <div key={data.country}>{data.country}, {data.cases}</div>
-    })
+  renderList(): JSX.Element[] {
+    return this.props.datas.map((data: Data, i) => {
+      return (
+        <div key={data.country}
+        // lat= {data.countryInfo.lat}
+        >
+          {/* {data.country}, */}
+          {data.cases},
+          {/* {data.countryInfo.lat},
+          {data.countryInfo.long} */}
+
+        </div>
+      );
+    });
   }
 
   render() {
     console.log(this.props.datas);
     return (
       <div>
-        <Map listData={this.renderList()}/>
-        {/* {this.renderList()} */}
+        <Map listData={this.props.datas} />
+        {this.renderList()}
       </div>
     );
   }
@@ -34,6 +44,4 @@ class _App extends React.Component<AppProps> {
 const mapStateToProps = (state: StoreState): { datas: Data[] } => {
   return { datas: state.datas };
 };
-export const App = connect(mapStateToProps, 
-  { fetchDatas }
-  )(_App);
+export const App = connect(mapStateToProps, { fetchDatas })(_App);
