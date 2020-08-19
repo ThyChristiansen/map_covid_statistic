@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker/Marker';
+import { connect } from 'react-redux';
+
+
 
 const Map = (props: any) => {
   const getMapOptions = (maps: any) => {
@@ -72,6 +75,8 @@ const Map = (props: any) => {
   };
   const [center, setCenter] = useState({ lat: 1, lng: 1 });
   const [zoom, setZoom] = useState(1);
+  
+
   return (
     <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
@@ -80,10 +85,21 @@ const Map = (props: any) => {
         options={getMapOptions}
         
       >
-        <Marker lat={15} lng={110} name="My Marker"  />
+         {/* <div>{props.listData}</div> */}
+        {/* {JSON.stringify()} */}
+        {props.listData.map((country:string, lat:number, lng:number) => {
+          return (
+            <Marker
+              key={country}
+              // lat={lat}
+              // lng={lng}
+            />
+          );
+        })}
       </GoogleMapReact>
     </div>
   );
 };
+const putReduxStateOnState = (reduxState:any) => ({ reduxState });
 
-export default Map;
+export default connect(putReduxStateOnState)(Map);

@@ -1,38 +1,39 @@
 import React from 'react';
-import Map from '../Map'
-import{connect} from 'react-redux'
-import {Data, fetchDatas} from '../actions/DataCovid';
-import {StoreState} from '../reducers/index'
+import Map from '../Map';
+import { connect } from 'react-redux';
+import { Data, fetchDatas } from '../actions/DataCovid';
+import { StoreState } from '../reducers/index';
 
-interface AppProps{
+interface AppProps {
   datas: Data[];
-  fetchDatas():any
+  fetchDatas(): any;
 }
 
-class _App extends React.Component<AppProps>{
+class _App extends React.Component<AppProps> {
+  componentDidMount() {
+    this.props.fetchDatas();
+  }
 
-componentDidMount(){
-  this.props.fetchDatas();
-}
+  renderList():JSX.Element[]{
+    return this.props.datas.map((data:Data)=>{
+      return <div key={data.country}>{data.country}, {data.cases}</div>
+    })
+  }
 
-  render(){
+  render() {
     console.log(this.props.datas);
     return (
-      <div> 
-        <Map />
-        
-
+      <div>
+        <Map listData={this.renderList()}/>
+        {/* {this.renderList()} */}
       </div>
-    )
-    
+    );
   }
 }
 
-const mapStateToProps=(state:StoreState):{datas:Data[]}=>{
-  return {datas:state.datas}
-}
-export const App= connect(
-  mapStateToProps,
+const mapStateToProps = (state: StoreState): { datas: Data[] } => {
+  return { datas: state.datas };
+};
+export const App = connect(mapStateToProps, 
   { fetchDatas }
-)(_App);
-
+  )(_App);
