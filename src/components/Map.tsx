@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Data } from './actions/DataCovid';
 
 const Map = (props: any) => {
-  const getMapOptions = (maps: any) => {
+  const getMapOptions = () => {
     return {
       disableDefaultUI: true,
       mapTypeControl: true,
@@ -75,10 +75,6 @@ const Map = (props: any) => {
   const [center, setCenter] = useState({ lat: 1, lng: 1 });
   const [zoom, setZoom] = useState(1);
 
-  // const[show] = useState(false)
-
-  // console.log(props.listData)
-
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
@@ -87,15 +83,24 @@ const Map = (props: any) => {
         defaultZoom={zoom}
         options={getMapOptions}
       >
-        {/* <div>{props.listData}</div> */}
-        {/* {JSON.stringify(props.listData[1])} */}
         {props.listData.map((data: Data) => {
           return (
-              <Marker lat={data.countryInfo.lat} lng={data.countryInfo.long} name={data.cases} color="#3d4d8da3" />
+            <Marker
+              lat={data.countryInfo.lat}
+              lng={data.countryInfo.long}
+              cases={data.cases}
+              country={data.country}
+              deaths={data.deaths}
+              recovered={data.recovered}
+              flag={data.countryInfo.flag}
+              casesPerOneMillion={data.casesPerOneMillion}
+              recoveredPerOneMillion={data.recoveredPerOneMillion}
+              deathsPerOneMillion={data.deathsPerOneMillion}
+              todayCases={data.todayCases}
+              todayDeaths={data.todayDeaths}
+            />
           );
         })}
-       
-
       </GoogleMapReact>
     </div>
   );

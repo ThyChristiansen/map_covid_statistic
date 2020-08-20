@@ -10,33 +10,21 @@ interface AppProps {
 }
 
 class _App extends React.Component<AppProps> {
-  
   componentDidMount() {
     this.props.fetchDatas();
   }
 
-  renderList(): JSX.Element[] {
-    return this.props.datas.map((data: Data, i) => {
-      return (
-        <div key={data.country}
-        // lat= {data.countryInfo.lat}
-        >
-          {/* {data.country}, */}
-          {data.cases},
-          {/* {data.countryInfo.lat},
-          {data.countryInfo.long} */}
-
-        </div>
-      );
-    });
-  }
+  // renderList(): JSX.Element[] {
+  //   return this.props.datas.map((data: Data, i) => {
+  //     return <div key={data.country}>{data.cases},</div>;
+  //   });
+  // }
 
   render() {
     console.log(this.props.datas);
     return (
       <div>
         <Map listData={this.props.datas} />
-        {this.renderList()}
       </div>
     );
   }

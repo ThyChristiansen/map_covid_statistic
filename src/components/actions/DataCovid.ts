@@ -5,14 +5,18 @@ import { ActionTypes } from './types';
 export interface Data {
   country: string;
   cases: number;
-  todayCases: number;
   deaths: number;
   recovered: number;
   countryInfo: {
     lat: number;
     long: number;
+    flag: string;
   };
-  // countryInfo:any;
+  casesPerOneMillion: number;
+  recoveredPerOneMillion: number;
+  deathsPerOneMillion: number;
+  todayCases: number;
+  todayDeaths: number;
 }
 
 export interface FetchDataAction {
