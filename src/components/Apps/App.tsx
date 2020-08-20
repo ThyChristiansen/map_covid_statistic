@@ -3,8 +3,9 @@ import Map from '../Map';
 import { connect } from 'react-redux';
 import { Data, fetchDatas } from '../actions/DataCovid';
 import { StoreState } from '../reducers/index';
+import OthersData from '../OthersData';
 
-interface AppProps {
+export interface AppProps {
   datas: Data[];
   fetchDatas(): any;
 }
@@ -24,6 +25,7 @@ class _App extends React.Component<AppProps> {
     console.log(this.props.datas);
     return (
       <div>
+        <OthersData listData={this.props.datas} />
         <Map listData={this.props.datas} />
       </div>
     );
