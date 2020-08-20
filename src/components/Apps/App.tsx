@@ -10,6 +10,7 @@ interface AppProps {
 }
 
 class _App extends React.Component<AppProps> {
+  
   componentDidMount() {
     this.props.fetchDatas();
   }

@@ -75,7 +75,10 @@ const Map = (props: any) => {
   const [center, setCenter] = useState({ lat: 1, lng: 1 });
   const [zoom, setZoom] = useState(1);
 
+  // const[show] = useState(false)
+
   // console.log(props.listData)
+
 
   return (
     <div style={{ height: '100vh', width: '100%' }}>
@@ -88,7 +91,7 @@ const Map = (props: any) => {
         {/* {JSON.stringify(props.listData[1])} */}
         {props.listData.map((data: Data) => {
           return (
-              <Marker lat={data.countryInfo.lat} lng={data.countryInfo.long} name={data.cases} color="red" />
+              <Marker lat={data.countryInfo.lat} lng={data.countryInfo.long} name={data.cases} color="#3d4d8da3" />
           );
         })}
        
