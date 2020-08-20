@@ -63,14 +63,14 @@ const Marker = (props: any) => {
             <th>Deaths</th>
           </tr>
           <tr>
-            <td>{recovered}</td>
-            <td>{cases}</td>
-            <td>{deaths}</td>
+            <td>{recovered.toLocaleString()}</td>
+            <td>{cases.toLocaleString()}</td>
+            <td>{deaths.toLocaleString()}</td>
           </tr>
           <tr>
-            <td>+ {todayRecovered}</td>
-            <td>+ {todayCases}</td>
-            <td>+ {todayDeaths}</td>
+            <td>+ {todayRecovered.toLocaleString()}</td>
+            <td>+ {todayCases.toLocaleString()}</td>
+            <td>+ {todayDeaths.toLocaleString()}</td>
           </tr>
         </table>
       </div>

@@ -39,18 +39,29 @@ import { Data } from './actions/DataCovid';
 const OtherDatas = (props: any) => {
   const { listData } = props;
   return (
-    <div
-      className="total_cases"
-      style={{
-        position: 'absolute',
-        right: '50px',
-        width: '200px',
-        height: '120px',
-        textAlign: 'center',
-      }}
-    >
-      <h3>Global cases</h3>
-      <h1>{listData.reduce((accumulator:number, current:any)=>accumulator+current.cases,0)}</h1>
+    <div>
+      <div
+        className="total_cases"
+        style={{
+          position: 'absolute',
+          right: '50px',
+          width: '200px',
+          height: '120px',
+          textAlign: 'center',
+          border: '1px solid darkgray',
+          backgroundColor: '#2a2f35',
+          borderRadius: '10px',
+          color: "#fff"
+        }}
+      >
+        <h3>Global cases</h3>
+        <h1>
+          {listData.reduce(
+            (accumulator: number, current: any) => accumulator + current.cases,
+            0
+          ).toLocaleString()}
+        </h1>
+      </div>
     </div>
   );
 };
