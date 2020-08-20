@@ -8,11 +8,10 @@ const Map = (props: any) => {
   const getMapOptions = () => {
     return {
       disableDefaultUI: true,
-      mapTypeControl: true,
-      streetViewControl: true,
+      // mapTypeControl: true,
+      streetViewControl: false,
       zoomControl: true,
       maxZoom: 10,
-      // backgroundColor:'black',
       styles: [
         { elementType: 'geometry', stylers: [{ color: '#212f3e' }] },
         { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
@@ -98,6 +97,8 @@ const Map = (props: any) => {
               deathsPerOneMillion={data.deathsPerOneMillion}
               todayCases={data.todayCases}
               todayDeaths={data.todayDeaths}
+              todayRecovered={data.todayRecovered}
+
             />
           );
         })}

@@ -15,3 +15,23 @@
   position: absolute;
   z-index: 1;
 }
+
+
+
+table {
+  border:none;
+  border-collapse: collapse;
+}
+
+table td {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+table td:first-child {
+  border-left: none;
+}
+
+table td:last-child {
+  border-right: none;
+}

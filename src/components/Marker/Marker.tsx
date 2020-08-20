@@ -14,6 +14,7 @@ const Marker = (props: any) => {
     deathsPerOneMillion,
     todayCases,
     todayDeaths,
+    todayRecovered,
   } = props;
   const [show, setShow] = useState(false);
 
@@ -49,23 +50,36 @@ const Marker = (props: any) => {
           alt="flag_image"
           style={{
             marginLeft: '30%',
+            marginBottom: '7px',
           }}
         />
         <br />
         <span style={{ fontWeight: 'bold' }}>Country: {country}</span>
         <br />
-        Cases: {cases}
-        <br />
-        Deaths: {deaths}
-        <br />
-        Recovered: {recovered}
-        <br />
-        Today cases: {todayCases}
-        <br />
-        Today deaths: {todayDeaths}
-        <br />
+        <table style={{ width: '100%', textAlign: 'center' }}>
+          <tr>
+            <th>Recovered</th>
+            <th>Cases</th>
+            <th>Deaths</th>
+          </tr>
+          <tr>
+            <td>{recovered}</td>
+            <td>{cases}</td>
+            <td>{deaths}</td>
+          </tr>
+          <tr>
+            <td>+ {todayRecovered}</td>
+            <td>+ {todayCases}</td>
+            <td>+ {todayDeaths}</td>
+          </tr>
+        </table>
       </div>
     ) : null;
+
+  let displayCases = cases.toString();
+  if (cases > 1000) {
+    displayCases = `${displayCases.slice(0, -3)}k+`;
+  }
 
   return (
     <div>
@@ -74,7 +88,7 @@ const Marker = (props: any) => {
         style={{ backgroundColor: '#3d4d8da3' }}
         onClick={handleClick}
       >
-        <span style={{ color: 'white' }}>{cases}</span>
+        <span style={{ color: 'white' }}>{displayCases}</span>
       </div>
       <div>
         <InfoWindow show={show} />

@@ -17,6 +17,8 @@ export interface Data {
   deathsPerOneMillion: number;
   todayCases: number;
   todayDeaths: number;
+  todayRecovered: number;
+
 }
 
 export interface FetchDataAction {
