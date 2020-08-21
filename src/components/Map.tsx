@@ -76,7 +76,7 @@ const Map = (props: any) => {
 
 
   return (
-    <div style={{ height: '100vh', width: '80%' }}>
+    <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
         defaultCenter={center}
         defaultZoom={zoom}

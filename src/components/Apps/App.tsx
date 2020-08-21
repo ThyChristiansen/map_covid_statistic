@@ -5,6 +5,10 @@ import { Data, fetchDatas } from '../actions/DataCovid';
 import { StoreState } from '../reducers/index';
 import OthersData from '../OthersData';
 
+
+import { Button } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+
 export interface AppProps {
   datas: Data[];
   fetchDatas(): any;
@@ -22,11 +26,18 @@ class _App extends React.Component<AppProps> {
   // }
 
   render() {
+
     console.log(this.props.datas);
     return (
       <div>
-        <OthersData listData={this.props.datas} />
-        <Map listData={this.props.datas} />
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
+            <OthersData listData={this.props.datas} />
+          </Grid>
+          <Grid item xs={9}>
+            <Map listData={this.props.datas} />
+          </Grid>
+        </Grid>
       </div>
     );
   }

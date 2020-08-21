@@ -1,16 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux'
-import {Provider} from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import {App} from './components/Apps/App'
+import { App } from './components/Apps/App';
 import { reducers } from './components/reducers';
 
-const store = createStore(reducers, applyMiddleware(thunk))
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+const store = createStore(reducers, applyMiddleware(thunk));
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ['"Quicksand"', 'sans-serif'].join(','),
+  },
+  palette: {
+    type: "dark",
+    primary: { main: '#F8E16C' }, 
+    secondary: { main: '#195C60' }, 
+  },
+});
 
 ReactDOM.render(
   <Provider store={store}>
-  <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>,
-document.querySelector('#root'))
+  document.querySelector('#root')
+);
