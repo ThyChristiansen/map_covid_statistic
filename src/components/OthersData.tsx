@@ -3,37 +3,33 @@ import React, { useState } from 'react';
 import { Data } from './actions/DataCovid';
 // import {Data} from './Apps/App'
 
+interface IState {
+  selectValue: string;
+}
 const OtherDatas = (props: any) => {
   const { listData } = props;
-  const [sortBy, setSort] = useState(0);
+  const [selectValue, setValue] = useState<string>('');
 
   // listData.sort((a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases));
 
-  const handleSortByCase = () => {
-    setSort(1);
-  };
-  const handleSortByDeaths = () => {
-    setSort(2);
-  };
-  const handleSortByCountry = () => {
-    setSort(0);
+  const handleSort = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    setValue(event.target.value);
   };
 
-  let sortData=[];
-  if (sortBy === 0) {
-    sortData=listData.sort(
-      (a: any, b: any) => ('' + a.country).localeCompare(b.country)
+  let sortData = [];
+  if (selectValue === 'country') {
+    sortData = listData.sort((a: any, b: any) =>
+      ('' + a.country).localeCompare(b.country)
     );
-  }else if (sortBy === 1) {
-     sortData=listData.sort(
+  } else if (selectValue === 'cases') {
+    sortData = listData.sort(
       (a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases)
     );
-  } else if (sortBy === 2) {
-    sortData=listData.sort(
+  } else if (selectValue === 'deaths') {
+    sortData = listData.sort(
       (a: any, b: any) => parseFloat(b.deaths) - parseFloat(a.deaths)
     );
   }
-  
 
   return (
     <div>
@@ -64,46 +60,23 @@ const OtherDatas = (props: any) => {
         </h1>
       </div>
 
+      <div
+        style={{
+          position: 'absolute',
+          right: '100px',
+          top: '120px',
+          textAlign: 'center',
+          borderRadius: '10px',
+        }}
+      >
+        <p>Sort by: </p>
+        <select onChange={handleSort}>
+          <option value="country">Country</option>
+          <option value="cases">Cases</option>
+          <option value="deaths">Deaths</option>
+        </select>
+      </div>
       
-      <button
-        style={{
-          position: 'absolute',
-          right: '50px',
-          top: '170px',
-          textAlign: 'center',
-          borderRadius: '10px',
-        }}
-        onClick={handleSortByCase}
-      >
-        Sort by cases
-      </button>
-      <button
-        style={{
-          position: 'absolute',
-          right: '150px',
-          top: '170px',
-          textAlign: 'center',
-          borderRadius: '10px',
-        }}
-        onClick={handleSortByDeaths}
-      >
-        Sort by Deaths
-      </button>
-      <button
-        style={{
-          position: 'absolute',
-          right: '150px',
-          top: '190px',
-          textAlign: 'center',
-          borderRadius: '10px',
-        }}
-        onClick={handleSortByCountry}
-      >
-        Sort by Country
-      </button>
-
-      {/*Sorting data by case */}
-
       <div
         className="total_cases"
         style={{
