@@ -1,35 +1,39 @@
 import React, { useState } from 'react';
-// import { CasesNumber } from './SortData/CasesNumber';
-import { Data } from './actions/DataCovid';
-// import {Data} from './Apps/App'
+import { AllData } from './Data/AllData';
 
 interface IState {
   selectValue: string;
 }
 const OtherDatas = (props: any) => {
   const { listData } = props;
-  const [selectValue, setValue] = useState<string>('');
+  const [selectValue, setValue] = useState<string>('Country');
 
   // listData.sort((a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases));
 
   const handleSort = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setValue(event.target.value);
+    // selectValue = (data: any) => data.event.target.value.toLocaleString();
   };
 
   let sortData = [];
-  if (selectValue === 'country') {
+  if (selectValue === 'Country') {
     sortData = listData.sort((a: any, b: any) =>
       ('' + a.country).localeCompare(b.country)
     );
-  } else if (selectValue === 'cases') {
+  } else if (selectValue === 'Cases') {
     sortData = listData.sort(
       (a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases)
     );
-  } else if (selectValue === 'deaths') {
+  } else if (selectValue === 'Deaths') {
     sortData = listData.sort(
       (a: any, b: any) => parseFloat(b.deaths) - parseFloat(a.deaths)
     );
+  } else if (selectValue === 'Recovered') {
+    sortData = listData.sort(
+      (a: any, b: any) => parseFloat(b.recovered) - parseFloat(a.recovered)
+    );
   }
+  console.log(selectValue);
 
   return (
     <div>
@@ -71,12 +75,13 @@ const OtherDatas = (props: any) => {
       >
         <p>Sort by: </p>
         <select onChange={handleSort}>
-          <option value="country">Country</option>
-          <option value="cases">Cases</option>
-          <option value="deaths">Deaths</option>
+          <option value="Country">Country</option>
+          <option value="Cases">Cases</option>
+          <option value="Deaths">Deaths</option>
+          <option value="Recovered">Recovered</option>
         </select>
       </div>
-      
+
       <div
         className="total_cases"
         style={{
@@ -91,13 +96,24 @@ const OtherDatas = (props: any) => {
           color: '#fff',
         }}
       >
-        {sortData.map((data: any) => {
-          return (
-            <div>
-              Country: {data.country}, Cases: {data.cases}
-            </div>
-          );
-        })}
+        <table style={{ width: '100%', textAlign: 'center' }}>
+          <tr>
+            <th>Country</th>
+            <th>{selectValue === 'Country'? 'Cases' : selectValue }</th>
+          </tr>
+          {sortData.map((data: any) => {
+            return (
+              <>
+                <tr>
+                  <td>{data.country}</td>
+                  <td>
+                    <AllData data={data} selectValue={selectValue} />
+                  </td>
+                </tr>
+              </>
+            );
+          })}
+        </table>
       </div>
     </div>
   );

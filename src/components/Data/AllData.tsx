@@ -1,18 +1,16 @@
-import React, {Component} from'react';
+import React from 'react';
 
-class AllData extends React.Component {
+export const AllData = (props: any) => {
+  const { selectValue, data } = props;
 
-  state={
-    show: false
+  let x; 
+  if (selectValue === 'Cases' || selectValue === 'Country') {
+    return x=<div>{data.cases}</div>;
+  } else if (selectValue === 'Deaths') {
+    return x=<div>{data.deaths}</div>;
+  } else if (selectValue === 'Recovered') {
+    return x=<div>{data.recovered}</div>;
   }
 
-
-
-  render(){
-    return (
-      <div>sdfsdf</div>
-    )
-  }
-}
-
-export default AllData;
+return <div>{x}</div>;
+};
