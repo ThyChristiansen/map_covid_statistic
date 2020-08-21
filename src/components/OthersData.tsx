@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AllData } from './Data/AllData';
+import { AllData } from './AllData';
 
 interface IState {
   selectValue: string;
@@ -8,11 +8,8 @@ const OtherDatas = (props: any) => {
   const { listData } = props;
   const [selectValue, setValue] = useState<string>('Country');
 
-  // listData.sort((a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases));
-
   const handleSort = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     setValue(event.target.value);
-    // selectValue = (data: any) => data.event.target.value.toLocaleString();
   };
 
   let sortData = [];
@@ -33,7 +30,6 @@ const OtherDatas = (props: any) => {
       (a: any, b: any) => parseFloat(b.recovered) - parseFloat(a.recovered)
     );
   }
-  console.log(selectValue);
 
   return (
     <div>
@@ -73,13 +69,21 @@ const OtherDatas = (props: any) => {
           borderRadius: '10px',
         }}
       >
-        <p>Sort by: </p>
-        <select onChange={handleSort}>
-          <option value="Country">Country</option>
-          <option value="Cases">Cases</option>
-          <option value="Deaths">Deaths</option>
-          <option value="Recovered">Recovered</option>
-        </select>
+        <h3
+          style={{
+            color: 'gray',
+          }}
+        >
+          Sort by:{' '}
+        </h3>
+        <span>
+          <select onChange={handleSort}>
+            <option value="Country">Country</option>
+            <option value="Cases">Cases</option>
+            <option value="Deaths">Deaths</option>
+            <option value="Recovered">Recovered</option>
+          </select>
+        </span>
       </div>
 
       <div
@@ -99,7 +103,7 @@ const OtherDatas = (props: any) => {
         <table style={{ width: '100%', textAlign: 'center' }}>
           <tr>
             <th>Country</th>
-            <th>{selectValue === 'Country'? 'Cases' : selectValue }</th>
+            <th>{selectValue === 'Country' ? 'Cases' : selectValue}</th>
           </tr>
           {sortData.map((data: any) => {
             return (
