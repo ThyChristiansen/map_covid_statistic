@@ -97,45 +97,45 @@ const Marker = (props: any) => {
   let changingSizeHeight;
 
   if (cases > 0) {
-    changingColor = '#90a6e89e';
+    changingColor = '#aabdf59e';
     changingSizeWidth= '2.6em'
     changingSizeHeight= '2.6em'
   } 
   if (cases > 500) {
     changingColor = '#7c96e49e';
-    changingSizeWidth= '2.6em'
-    changingSizeHeight= '2.6em'
+    changingSizeWidth= '3.6em'
+    changingSizeHeight= '3.6em'
   } 
   if (cases > 1000) {
     displayCases = `${displayCases.slice(0, -3)}k+`;
     changingColor = '#6786e69e';
-    changingSizeWidth= '3.6em'
-    changingSizeHeight= '3.6em'
-  } 
-  if (cases > 5000) {
-    changingColor = '#5573cf9e';
     changingSizeWidth= '4.6em'
     changingSizeHeight= '4.6em'
   } 
-   if (cases > 10000) {
-    changingColor = '#3b57ab9e';
+  if (cases > 5000) {
+    changingColor = '#5573cf9e';
     changingSizeWidth= '5.6em'
     changingSizeHeight= '5.6em'
   } 
-  if (cases > 50000) {
-    changingColor = '#263b7c9e';
+   if (cases > 10000) {
+    changingColor = '#3b57ab9e';
     changingSizeWidth= '6.6em'
     changingSizeHeight= '6.6em'
   } 
-  if (cases > 100000) {
-    changingColor = '#19295a9e';
+  if (cases > 50000) {
+    changingColor = '#263b7c9e';
     changingSizeWidth= '7.6em'
     changingSizeHeight= '7.6em'
   } 
-  if (cases > 1000000) {
-    changingColor = '#0b132b9e';
+  if (cases > 100000) {
+    changingColor = '#19295a9e';
     changingSizeWidth= '8.6em'
     changingSizeHeight= '8.6em'
+  } 
+  if (cases > 1000000) {
+    changingColor = '#0b132b9e';
+    changingSizeWidth= '9.6em'
+    changingSizeHeight= '9.6em'
   }
 
   return (
