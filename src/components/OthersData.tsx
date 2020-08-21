@@ -9,8 +9,11 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 interface IState {
   selectValue: string;
@@ -36,11 +39,17 @@ const useStyles = makeStyles({
   },
   container: {
     maxHeight: '70vh',
+    borderRadius: '10px',
+
   },
   paper: {
     width: '100%',
     // marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
+  },
+  formControl: {
+    width: 150,
+    marginBottom: '10px',
   },
 });
 
@@ -48,18 +57,9 @@ const OtherDatas = (props: any) => {
   const { listData } = props;
   const [selectValue, setValue] = useState<string>('Country');
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleSort = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-    setValue(event.target.value);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+  const handleSort = (event: React.ChangeEvent<{ value: unknown }>): void => {
+    setValue(event.target.value as string);
   };
 
   let sortData = [];
@@ -118,15 +118,22 @@ const OtherDatas = (props: any) => {
             color: 'gray',
           }}
         >
-          Sort by:{' '}
+          Statistics Information COVID-19
         </h3>
         <span>
-          <select onChange={handleSort}>
-            <option value="Country">Country</option>
-            <option value="Cases">Cases</option>
-            <option value="Deaths">Deaths</option>
-            <option value="Recovered">Recovered</option>
-          </select>
+          <FormControl variant="outlined" className = {classes.formControl}>
+            <InputLabel>Sort by:</InputLabel>
+            <Select
+              onChange={handleSort}
+              value={selectValue}
+              label="Sort by"
+            >
+              <MenuItem value="Country">Country</MenuItem>
+              <MenuItem value="Cases">Cases</MenuItem>
+              <MenuItem value="Deaths">Deaths</MenuItem>
+              <MenuItem value="Recovered">Recovered</MenuItem>
+            </Select>
+          </FormControl>
         </span>
       </div>
 

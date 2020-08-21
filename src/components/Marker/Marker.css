@@ -3,21 +3,19 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  width: 3.6em;
-  height: 3.6em;
+  /* width: 3.6em;
+  height: 3.6em; */
   font-size: 0.7em;
   font-weight: bold;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(black, 0.9);
+  background: #90a6e89e;
 }
 
 .info_window {
   position: absolute;
   z-index: 1;
 }
-
-
-
 table {
   border:none;
   border-collapse: collapse;
