@@ -18,10 +18,12 @@
     "google-map-react": "^2.0.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-globe.gl": "^2.12.4",
     "react-redux": "^7.2.1",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "three": "^0.119.1",
     "typescript": "^3.7.5"
   },
   "scripts": {

@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Map from '../Map';
 import { connect } from 'react-redux';
 import { Data, fetchDatas } from '../actions/DataCovid';
 import { StoreState } from '../reducers/index';
 import OthersData from '../OthersData';
 
-
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
+
+import Globe from 'react-globe.gl';
 
 export interface AppProps {
   datas: Data[];
   fetchDatas(): any;
 }
+
+
 
 class _App extends React.Component<AppProps> {
   componentDidMount() {
@@ -26,7 +29,6 @@ class _App extends React.Component<AppProps> {
   // }
 
   render() {
-
     console.log(this.props.datas);
     return (
       <div>
@@ -38,6 +40,20 @@ class _App extends React.Component<AppProps> {
             <Map listData={this.props.datas} />
           </Grid>
         </Grid>
+        <Globe
+          // ref={globeEl}
+          waitForGlobeReady={true}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+          backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+          labelsData={this.props.datas}
+          labelLat={38}
+          labelLng={-97}
+          labelText="34sdf"
+          labelSize={23}
+          labelDotRadius={23}
+          labelColor={() => 'rgba(255, 165, 0, 0.75)'}
+          labelResolution={2}
+        />
       </div>
     );
   }
