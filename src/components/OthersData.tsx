@@ -1,20 +1,40 @@
-import React from 'react';
-import { CasesNumber } from './SortData/CasesNumber';
+import React, { useState } from 'react';
+// import { CasesNumber } from './SortData/CasesNumber';
 import { Data } from './actions/DataCovid';
 // import {Data} from './Apps/App'
 
 const OtherDatas = (props: any) => {
   const { listData } = props;
+  const [sortBy, setSort] = useState(0);
 
-  // let numbersArray: number[] = listData
-  //   .map((data: any) => {
-  //     return data.cases;
-  //   })
-  //   .sort((n1: number, n2: number) => n2 - n1);
+  // listData.sort((a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases));
 
-  listData.sort((a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases));
+  const handleSortByCase = () => {
+    setSort(1);
+  };
+  const handleSortByDeaths = () => {
+    setSort(2);
+  };
+  const handleSortByCountry = () => {
+    setSort(0);
+  };
 
+  let sortData=[];
+  if (sortBy === 0) {
+    sortData=listData.sort(
+      (a: any, b: any) => ('' + a.country).localeCompare(b.country)
+    );
+  }else if (sortBy === 1) {
+     sortData=listData.sort(
+      (a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases)
+    );
+  } else if (sortBy === 2) {
+    sortData=listData.sort(
+      (a: any, b: any) => parseFloat(b.deaths) - parseFloat(a.deaths)
+    );
+  }
   
+
   return (
     <div>
       {/* Global cases */}
@@ -43,6 +63,8 @@ const OtherDatas = (props: any) => {
             .toLocaleString()}
         </h1>
       </div>
+
+      
       <button
         style={{
           position: 'absolute',
@@ -51,7 +73,7 @@ const OtherDatas = (props: any) => {
           textAlign: 'center',
           borderRadius: '10px',
         }}
-        // onClick={handleSortByCase}
+        onClick={handleSortByCase}
       >
         Sort by cases
       </button>
@@ -63,11 +85,25 @@ const OtherDatas = (props: any) => {
           textAlign: 'center',
           borderRadius: '10px',
         }}
+        onClick={handleSortByDeaths}
       >
-        Sort by country
+        Sort by Deaths
+      </button>
+      <button
+        style={{
+          position: 'absolute',
+          right: '150px',
+          top: '190px',
+          textAlign: 'center',
+          borderRadius: '10px',
+        }}
+        onClick={handleSortByCountry}
+      >
+        Sort by Country
       </button>
 
       {/*Sorting data by case */}
+
       <div
         className="total_cases"
         style={{
@@ -82,7 +118,7 @@ const OtherDatas = (props: any) => {
           color: '#fff',
         }}
       >
-        {listData.map((data: any) => {
+        {sortData.map((data: any) => {
           return (
             <div>
               Country: {data.country}, Cases: {data.cases}
@@ -90,7 +126,6 @@ const OtherDatas = (props: any) => {
           );
         })}
       </div>
-      {/*Sorting data by country */}
     </div>
   );
 };
