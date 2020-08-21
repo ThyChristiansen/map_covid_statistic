@@ -4,16 +4,16 @@ import Marker from './Marker/Marker';
 import { connect } from 'react-redux';
 import { Data } from './actions/DataCovid';
 
-import Globe from 'react-globe.gl';
+// import Globe from 'react-globe.gl';
 
 const Map = (props: any) => {
-  const globeEl: any = useRef();
+  // const globeEl: any = useRef();
 
-  useEffect(() => {
-    globeEl.current.controls().autoRotate = true;
-    globeEl.current.controls().autoRotateSpeed = 0.3;
-    globeEl.current.pointOfView({ altitude: 4 }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   globeEl.current.controls().autoRotate = true;
+  //   globeEl.current.controls().autoRotateSpeed = 0.3;
+  //   globeEl.current.pointOfView({ altitude: 4 }, 5000);
+  // }, []);
 
   const getMapOptions = () => {
     return {
@@ -94,17 +94,11 @@ const Map = (props: any) => {
     );
   }, 3000);
 
-  useEffect(() => {
-    // load data
-    fetch('../datasets/ne_110m_populated_places_simple.geojson')
-      .then((res) => res.json())
-      .then(({ features }) => setPlaces(features));
-  }, []);
-
+  
   // console.log(props.listData);
   return (
     <div style={{ height: '100vh', width: '100%' }}>
-      {/* <GoogleMapReact
+      <GoogleMapReact
         defaultCenter={center}
         defaultZoom={zoom}
         options={getMapOptions}
@@ -128,8 +122,8 @@ const Map = (props: any) => {
             />
           );
         })}
-      </GoogleMapReact> */}
-      <Globe
+      </GoogleMapReact>
+      {/* <Globe
       
         ref={globeEl}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
@@ -137,7 +131,7 @@ const Map = (props: any) => {
         labelLat={props.listData.map((data: Data) => {
           return data.countryInfo.lat;
         })}
-      />
+      /> */}
     </div>
   );
 };
