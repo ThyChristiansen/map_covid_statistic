@@ -22,6 +22,7 @@ const Map = (props: any) => {
       streetViewControl: false,
       zoomControl: true,
       maxZoom: 10,
+      fullscreenControl:true,
       styles: [
         { elementType: 'geometry', stylers: [{ color: '#212f3e' }] },
         { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
