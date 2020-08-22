@@ -6,6 +6,6 @@ This is an app built by Typescript. It shows Covid-19 statistics on the map and 
 
 [See app](https://covid19statistic.herokuapp.com)
 
-![mockup one](screen_shot.png)
+![mockup one](public/screen_shot.png)
 
 
