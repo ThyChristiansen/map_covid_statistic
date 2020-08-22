@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import Map from '../Map';
 import { connect } from 'react-redux';
 import { Data, fetchDatas } from '../actions/DataCovid';
 import { StoreState } from '../reducers/index';
 import OthersData from '../OthersData';
 
-import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 
 // import Globe from 'react-globe.gl';

@@ -12,9 +12,6 @@ export interface Data {
     long: number;
     flag: string;
   };
-  casesPerOneMillion: number;
-  recoveredPerOneMillion: number;
-  deathsPerOneMillion: number;
   todayCases: number;
   todayDeaths: number;
   todayRecovered: number;
