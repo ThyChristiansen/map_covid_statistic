@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Data, fetchDatas } from '../actions/DataCovid';
 import { StoreState } from '../reducers/index';
 import OthersData from '../OthersData';
+// import Test from '../test';
 
 import Grid from '@material-ui/core/Grid';
 
@@ -33,12 +34,13 @@ class _App extends React.Component<AppProps> {
       <div>
         <Grid container spacing={2}>
           <Grid item xs={3}>
-            <OthersData listData={this.props.datas} />
+            <OthersData />
           </Grid>
           <Grid item xs={9}>
-            <Map listData={this.props.datas} />
+            <Map />
           </Grid>
         </Grid>
+        {/* <Test /> */}
       </div>
     );
   }

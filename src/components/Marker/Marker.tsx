@@ -46,6 +46,7 @@ const Marker = (props: any) => {
   const handleClick = () => {
     setShow(!show);
   };
+  
   const InfoWindow = (props: any) =>
     props.show ? (
       <div className="info_window">

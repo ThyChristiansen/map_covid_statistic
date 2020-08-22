@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { AllData } from './AllData';
-// import { Data } from './actions/DataCovid';
+import { Data } from './actions/DataCovid';
+import { ActionTypes } from './actions/types';
+import { Dispatch } from 'redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -15,6 +18,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+import {Test} from './test'
+
 interface IState {
   selectValue: string;
 }
@@ -27,12 +32,15 @@ interface Column {
   format?: (value: number) => string;
 }
 
-interface Data {
-  country: string;
-  cases: number;
-  deaths: number;
-  recovered: number;
+export interface FetchLocationAction {
+  type: ActionTypes.fetchLocation;
+  payload: { lat: number; lng: number };
 }
+export interface ILocation {
+  lat: number;
+  lng: number;
+}
+
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -40,7 +48,6 @@ const useStyles = makeStyles({
   container: {
     maxHeight: '70vh',
     borderRadius: '10px',
-
   },
   paper: {
     width: '100%',
@@ -54,7 +61,6 @@ const useStyles = makeStyles({
 });
 
 const OtherDatas = (props: any) => {
-  const { listData } = props;
   const [selectValue, setValue] = useState<string>('Country');
   const classes = useStyles();
 
@@ -64,22 +70,34 @@ const OtherDatas = (props: any) => {
 
   let sortData = [];
   if (selectValue === 'Country') {
-    sortData = listData.sort((a: any, b: any) =>
+    sortData = props.reduxState.datas.sort((a: any, b: any) =>
       ('' + a.country).localeCompare(b.country)
     );
   } else if (selectValue === 'Cases') {
-    sortData = listData.sort(
+    sortData = props.reduxState.datas.sort(
       (a: any, b: any) => parseFloat(b.cases) - parseFloat(a.cases)
     );
   } else if (selectValue === 'Deaths') {
-    sortData = listData.sort(
+    sortData = props.reduxState.datas.sort(
       (a: any, b: any) => parseFloat(b.deaths) - parseFloat(a.deaths)
     );
   } else if (selectValue === 'Recovered') {
-    sortData = listData.sort(
+    sortData = props.reduxState.datas.sort(
       (a: any, b: any) => parseFloat(b.recovered) - parseFloat(a.recovered)
     );
   }
+
+  const fetchLocation = (x: any) => {
+    return async (dispatch: Dispatch) => {
+      const response = x;
+      console.log(x);
+
+      dispatch<FetchLocationAction>({
+        type: ActionTypes.fetchLocation,
+        payload: response.data,
+      });
+    };
+  };
 
   return (
     <div>
@@ -97,7 +115,7 @@ const OtherDatas = (props: any) => {
       >
         <h3>Global cases</h3>
         <h1>
-          {listData
+          {props.reduxState.datas
             .reduce(
               (accumulator: number, current: any) =>
                 accumulator + current.cases,
@@ -121,13 +139,9 @@ const OtherDatas = (props: any) => {
           Statistics Information COVID-19
         </h3>
         <span>
-          <FormControl variant="outlined" className = {classes.formControl}>
+          <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel>Sort by:</InputLabel>
-            <Select
-              onChange={handleSort}
-              value={selectValue}
-              label="Sort by"
-            >
+            <Select onChange={handleSort} value={selectValue} label="Sort by">
               <MenuItem value="Country">Country</MenuItem>
               <MenuItem value="Cases">Cases</MenuItem>
               <MenuItem value="Deaths">Deaths</MenuItem>
@@ -163,7 +177,16 @@ const OtherDatas = (props: any) => {
                   return (
                     <>
                       <TableRow>
-                        <TableCell>{data.country}</TableCell>
+                        <TableCell
+                          onClick={() =>
+                            Test({
+                              lat: data.countryInfo.lat,
+                              lng: data.countryInfo.long,
+                            })
+                          }
+                        >
+                          {data.country}
+                        </TableCell>
                         <TableCell>
                           <AllData data={data} selectValue={selectValue} />
                         </TableCell>
@@ -180,4 +203,6 @@ const OtherDatas = (props: any) => {
   );
 };
 
-export default OtherDatas;
+const putReduxStateOnState = (reduxState: any) => ({ reduxState });
+
+export default connect(putReduxStateOnState)(OtherDatas);

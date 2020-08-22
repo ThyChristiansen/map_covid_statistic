@@ -15,8 +15,9 @@ export interface Data {
   todayCases: number;
   todayDeaths: number;
   todayRecovered: number;
-
 }
+
+
 
 export interface FetchDataAction {
   type: ActionTypes.fetchDatas;

@@ -1,4 +1,7 @@
 
 export enum ActionTypes{
-  fetchDatas
+  fetchDatas,
+  fetchLocation,
 }
+
+
