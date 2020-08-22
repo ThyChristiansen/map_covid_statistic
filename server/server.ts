@@ -1,8 +1,23 @@
-const express = require('express')
-const app = express()
-const path = require('path')
-const port = process.env.PORT || 3000
+const express = require('express');
+require('dotenv').config();
 
-app.use('/', express.static(path.join(__dirname, 'public')))
 
-app.listen(port, () => console.log("Listening on Port", port)) 
+const app = express();
+const bodyParser = require('body-parser');
+
+// Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+// Serve static files
+app.use(express.static('build'));
+
+// App Set //
+const PORT = process.env.PORT || 5000;
+
+/** Listen * */
+app.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
+});
