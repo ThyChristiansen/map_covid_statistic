@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from '../Map';
+import Map from '../3D_globe/Map';
 import { connect } from 'react-redux';
 import { Data, fetchDatas } from '../actions/DataCovid';
 import { StoreState } from '../reducers/index';
@@ -29,7 +29,7 @@ class _App extends React.Component<AppProps> {
   // }
 
   render() {
-    console.log(this.props.datas);
+    // console.log(this.props.datas);
     return (
       <div>
         <Grid container spacing={2}>

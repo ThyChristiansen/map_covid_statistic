@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { AllData } from './AllData';
 import { Data } from './actions/DataCovid';
 import { ActionTypes } from './actions/types';
-import { Dispatch } from 'redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -18,7 +17,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import {Test} from './test'
 
 interface IState {
   selectValue: string;
@@ -87,17 +85,17 @@ const OtherDatas = (props: any) => {
     );
   }
 
-  const fetchLocation = (x: any) => {
-    return async (dispatch: Dispatch) => {
-      const response = x;
-      console.log(x);
+  // const fetchLocation = (x: any) => {
+  //   return async (dispatch: Dispatch) => {
+  //     const response = x;
+  //     console.log(x);
 
-      dispatch<FetchLocationAction>({
-        type: ActionTypes.fetchLocation,
-        payload: response.data,
-      });
-    };
-  };
+  //     dispatch<FetchLocationAction>({
+  //       type: ActionTypes.fetchLocation,
+  //       payload: response.data,
+  //     });
+  //   };
+  // };
 
   return (
     <div>
@@ -178,12 +176,12 @@ const OtherDatas = (props: any) => {
                     <>
                       <TableRow>
                         <TableCell
-                          onClick={() =>
-                            Test({
-                              lat: data.countryInfo.lat,
-                              lng: data.countryInfo.long,
-                            })
-                          }
+                          // onClick={() =>
+                          //   Test({
+                          //     lat: data.countryInfo.lat,
+                          //     lng: data.countryInfo.long,
+                          //   })
+                          // }
                         >
                           {data.country}
                         </TableCell>
