@@ -2,8 +2,8 @@ import {combineReducers} from 'redux';
 import {DataReducer} from './dataCovidReducer';
 // import {DataLocationReducer} from './LocationReducer';
 
-import {Data} from '../actions/DataCovid';
-import {ILocation} from '../OthersData';
+import {Data} from '../components/actions/DataCovid';
+import {ILocation} from '../components/OthersData';
 
 
 export interface StoreState{

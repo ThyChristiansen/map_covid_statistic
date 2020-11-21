@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { App } from './components/Apps/App';
-import { reducers } from './components/reducers';
+import { App } from './Apps/App';
+import { reducers } from './reducers';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 

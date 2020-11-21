@@ -1,9 +1,9 @@
 import React from 'react';
-import Map from '../3D_globe/Map';
+import Map from '../components/3D_globe/Map';
 import { connect } from 'react-redux';
-import { Data, fetchDatas } from '../actions/DataCovid';
+import { Data, fetchDatas } from '../components/actions/DataCovid';
 import { StoreState } from '../reducers/index';
-import OthersData from '../OthersData';
+import OthersData from '../components/OthersData';
 // import Test from '../test';
 
 import Grid from '@material-ui/core/Grid';

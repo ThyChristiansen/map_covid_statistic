@@ -1,6 +1,6 @@
-import { Data, FetchDataAction } from '../actions/DataCovid';
+import { Data, FetchDataAction } from '../components/actions/DataCovid';
 
-import { ActionTypes } from '../actions/types';
+import { ActionTypes } from '../components/actions/types';
 
 export const DataReducer = (state: Data[] = [], action: FetchDataAction) => {
   switch (action.type) {
